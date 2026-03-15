@@ -12,6 +12,6 @@ jobs:
     steps:
       - name: Ping Supabase
         run: |
-          curl -L -X GET "https://poeyhgmbbpovbmonoeqi.supabase.co/rest/v1/expenses?select=*&limit=1" \
+          curl -L -X GET "https://poeyhgmbbpovbmonoeqi.supabase.co/rest/v1/expenses?select=id&limit=1" \
           -H "apikey: sb_publishable_OrfNOkhkSX5BnhVKXwHsIA_BTx29o2O" \
           -H "Authorization: Bearer sb_publishable_OrfNOkhkSX5BnhVKXwHsIA_BTx29o2O"
