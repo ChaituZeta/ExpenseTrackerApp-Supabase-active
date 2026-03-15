@@ -1,0 +1,17 @@
+name: Keep Supabase Active
+
+on:
+  schedule:
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Ping Supabase
+        run: |
+          curl -L -X GET "https://poeyhgmbbpovbmonoeqi.supabase.co/rest/v1/?select=*" \
+          -H "apikey: sb_publishable_OrfNOkhkSX5BnhVKXwHsIA_BTx29o2O" \
+          -H "Authorization: Bearer sb_publishable_OrfNOkhkSX5BnhVKXwHsIA_BTx29o2O"
