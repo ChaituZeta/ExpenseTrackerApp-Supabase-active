@@ -9,9 +9,22 @@ jobs:
   ping:
     runs-on: ubuntu-latest
 
+    # Gives the runner permission to push a dummy commit to your repository
+    permissions:
+      contents: write
+
     steps:
+      # Step 1: Checks out your repository files so they can be modified
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Your original Supabase ping action
       - name: Ping Supabase
         run: |
           curl -L "https://poeyhgmbbpovbmonoeqi.supabase.co/rest/v1/transactions?select=*&limit=1" \
           -H "apikey: sb_publishable_OrfNOkhkSX5BnhVKXwHsIA_BTx29o2O" \
           -H "Authorization: Bearer sb_publishable_OrfNOkhkSX5BnhVKXwHsIA_BTx29o2O"
+
+      # Step 3: Automatically makes a dummy commit before the 60-day deadline
+      - name: Keep Workflow Active
+        uses: gautamkrishnar/keepalive-workflow@v1
