@@ -12,6 +12,15 @@ jobs:
     steps:
       - name: Ping Supabase
         run: |
-          curl -L "https://poeyhgmbbpovbmonoeqi.supabase.co/rest/v1/transactions?select=*&limit=1" \
-          -H "apikey: sb_publishable_OrfNOkhkSX5BnhVKXwHsIA_BTx29o2O" \
-          -H "Authorization: Bearer sb_publishable_OrfNOkhkSX5BnhVKXwHsIA_BTx29o2O"
+          curl --fail \
+               --retry 5 \
+               --retry-delay 10 \
+               --connect-timeout 15 \
+               --max-time 60 \
+               --location \
+               --write-out "\nHTTP Status: %{http_code}\n" \
+               "https://poeyhgmbbpovbmonoeqi.supabase.co/rest/v1/transactions?select=id&limit=1" \
+               -H "apikey: sb_publishable_OrfNOkhkSX5BnhVKXwHsIA_BTx29o2O" \
+               -H "Authorization: Bearer sb_publishable_OrfNOkhkSX5BnhVKXwHsIA_BTx29o2O"
+
+          echo "Supabase ping completed successfully."
